@@ -4,7 +4,7 @@ import Order from "../models/Order.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = express.Router();
-// ✅ GET MY ORDERS// ✅ GET MY ORDERS (Exact DB data)
+// GET MY ORDERS
 router.get("/my-orders", authMiddleware, async (req,res)=>{
   try{
 
@@ -20,7 +20,7 @@ router.get("/my-orders", authMiddleware, async (req,res)=>{
   }
 });
 
-// ================= CANCEL ORDER =================
+//  CANCEL ORDER 
 router.put("/cancel/:id", authMiddleware, async (req,res)=>{
   try{
 
@@ -33,7 +33,7 @@ router.put("/cancel/:id", authMiddleware, async (req,res)=>{
       return res.status(404).json({message:"Order not found"});
     }
 
-    // Only allow cancel if not already delivered
+    
     if(order.status === "delivered"){
       return res.status(400).json({message:"Delivered order cannot be cancelled"});
     }

@@ -4,7 +4,7 @@ import Cart from "../models/Cart.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 
 
-// ✅ Get Cart
+//  Get Cart
 router.get("/", authMiddleware, async (req,res)=>{
   try{
     const cart = await Cart.find({ userId:req.user.id })
@@ -17,7 +17,7 @@ router.get("/", authMiddleware, async (req,res)=>{
 });
 
 
-// ✅ Add To Cart
+//  Add To Cart
 router.post("/add", authMiddleware, async (req,res)=>{
   try{
 
@@ -48,7 +48,7 @@ router.post("/add", authMiddleware, async (req,res)=>{
 });
 
 
-// ✅ Update Quantity// ✅ Update Quantity
+//  Update Quantity
 router.put("/:id", authMiddleware, async (req,res)=>{
   try{
 
@@ -73,7 +73,7 @@ router.put("/:id", authMiddleware, async (req,res)=>{
 });
 
 
-// ✅ Remove Item
+//  Remove Item
 router.delete("/:id", authMiddleware, async (req,res)=>{
   try{
     await Cart.findByIdAndDelete(req.params.id);
